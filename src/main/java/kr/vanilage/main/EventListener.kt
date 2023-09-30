@@ -1,10 +1,7 @@
 package kr.vanilage.main
 
 import io.github.monun.invfx.openFrame
-import org.bukkit.Bukkit
-import org.bukkit.GameMode
-import org.bukkit.Material
-import org.bukkit.Sound
+import org.bukkit.*
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.block.Action
@@ -14,6 +11,7 @@ import org.bukkit.event.block.BlockPlaceEvent
 import org.bukkit.event.entity.ItemSpawnEvent
 import org.bukkit.event.player.PlayerDropItemEvent
 import org.bukkit.event.player.PlayerInteractEvent
+import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerRespawnEvent
 import org.bukkit.event.player.PlayerSwapHandItemsEvent
 import org.bukkit.inventory.ItemStack
@@ -145,5 +143,10 @@ class EventListener : Listener {
 
             if (e.player.gameMode != GameMode.CREATIVE) e.player.inventory.itemInMainHand.amount--;
         }
+    }
+
+    @EventHandler
+    fun onJoin(e : PlayerJoinEvent) {
+        e.player.teleport(Location(e.player.world, 0.0, 103.0, 0.0))
     }
 }
