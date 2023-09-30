@@ -56,7 +56,7 @@ class Main : JavaPlugin() {
                     Bukkit.getScheduler().runTaskTimer(pluginInstance!!, Runnable {
                         Data.RED_SPAWN.world.dropItem(Data.RED_SPAWN, ItemStack(Material.OAK_LOG))
                         Data.BLUE_SPAWN.world.dropItem(Data.BLUE_SPAWN, ItemStack(Material.OAK_LOG))
-                    }, 0, 60)
+                    }, 0, 100)
                 }
             }
         }
