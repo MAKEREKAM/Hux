@@ -61,6 +61,10 @@ class Missile : Listener {
             Main.RED_CORE_HP -= damage
             if (Main.RED_CORE_HP <= 0) {
                 Bukkit.broadcastMessage("RED 탈락")
+                Main.bossBarRed.progress = 0.0
+            }
+            else {
+                Main.bossBarRed.progress = (Main.RED_CORE_HP.toDouble() / 200.0)
             }
         }
 
@@ -68,6 +72,10 @@ class Missile : Listener {
             Main.BLUE_CORE_HP -= damage
             if (Main.BLUE_CORE_HP <= 0) {
                 Bukkit.broadcastMessage("BLUE 탈락")
+                Main.bossBarBlue.progress = 0.0
+            }
+            else {
+                Main.bossBarBlue.progress = (Main.BLUE_CORE_HP.toDouble() / 200.0)
             }
         }
     }

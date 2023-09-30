@@ -4,11 +4,15 @@ import io.github.monun.kommand.kommand
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
+import org.bukkit.boss.BarColor
+import org.bukkit.boss.BarFlag
+import org.bukkit.boss.BarStyle
+import org.bukkit.boss.BossBar
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.plugin.java.JavaPlugin
-import java.awt.dnd.DropTarget
-import java.util.UUID
+import java.util.*
+
 
 var pluginInstance : JavaPlugin? = null
 
@@ -18,6 +22,20 @@ class Main : JavaPlugin() {
         var BLUE_CORE_HP = 200
 
         val playerTeam : HashMap<UUID, String> = HashMap()
+
+        var bossBarRed: BossBar = Bukkit.createBossBar(
+            "§cRED",
+            BarColor.RED,
+            BarStyle.SOLID,
+            BarFlag.PLAY_BOSS_MUSIC
+        )
+
+        var bossBarBlue: BossBar = Bukkit.createBossBar(
+            "§9BLUE",
+            BarColor.BLUE,
+            BarStyle.SOLID,
+            BarFlag.PLAY_BOSS_MUSIC
+        )
     }
 
     override fun onEnable() {
@@ -28,13 +46,6 @@ class Main : JavaPlugin() {
         Bukkit.getPluginManager().registerEvents(Missile(), this)
 
         kommand {
-            register("craft") {
-                requires { isPlayer }
-                executes {
-                    player.openWorkbench(null, true)
-                }
-            }
-
             register("gamestart") {
                 requires { isPlayer && isOp && Bukkit.getOnlinePlayers().size <= 4}
                 executes {
@@ -50,6 +61,9 @@ class Main : JavaPlugin() {
                                 playerTeam[i.uniqueId] = "BLUE"
                                 i.teleport(Data.BLUE_SPAWN)
                             }
+
+                            bossBarRed.addPlayer(i)
+                            bossBarBlue.addPlayer(i)
 
                             count++
                         }

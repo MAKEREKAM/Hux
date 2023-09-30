@@ -68,13 +68,29 @@ class EventListener : Listener {
 
     @EventHandler
     fun onRespawn(e : PlayerRespawnEvent) {
-        if (Main.playerTeam[e.player.uniqueId]!! == "RED") e.player.teleport(Data.RED_SPAWN)
-        else e.player.teleport(Data.BLUE_SPAWN)
+        if (Main.playerTeam[e.player.uniqueId]!! == "RED") {
+            Bukkit.getScheduler().runTaskLater(pluginInstance!!, Runnable {
+                e.player.teleport(Data.RED_SPAWN)
+            }, 1)
+
+        }
+
+        else {
+            Bukkit.getScheduler().runTaskLater(pluginInstance!!, Runnable {
+                e.player.teleport(Data.BLUE_SPAWN)
+            }, 1)
+        }
     }
 
     @EventHandler
     fun onSwap(e : PlayerSwapHandItemsEvent) {
         e.isCancelled = true
+
+        if (e.player.isSneaking) {
+            e.player.openWorkbench(null, true)
+            return
+        }
+
         if (e.offHandItem?.itemMeta?.displayName == null) return
 
         if (e.offHandItem!!.itemMeta.displayName == "§a돌 생성기") {
