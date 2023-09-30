@@ -53,7 +53,7 @@ class Missile : Listener {
     fun onProjectileHit(e : ProjectileHitEvent) {
         if (!e.entity.scoreboardTags.contains("gameProjectile")) return
 
-        val damage = if (e.entity.scoreboardTags.contains("missile")) { 4 } else 8
+        val damage = if (e.entity.scoreboardTags.contains("missile")) { 4 } else 12
 
         e.entity.world.createExplosion(e.entity.location, damage.toFloat())
 
