@@ -23,9 +23,9 @@ class Data {
                 onClick { e ->
                     val p = e.whoClicked as Player
 
-                    for (i in p.inventory.contents) {
-                        if (i?.type!! == Material.STONE) {
-                            i.amount--
+                    if (e.isLeftClick) {
+                        if (p.inventory.itemInMainHand.type == Material.STONE) {
+                            p.inventory.itemInMainHand.amount--
                             p.inventory.addItem(ItemStack(Material.COBBLESTONE))
                             p.playSound(p.location, Sound.BLOCK_NOTE_BLOCK_SNARE, 100F, 1F)
                         }
@@ -42,22 +42,18 @@ class Data {
                     val p = e.whoClicked as Player
 
                     if (e.isLeftClick) {
-                        for (i in p.inventory.contents) {
-                            if (i?.type!! == Material.IRON_ORE) {
-                                i.amount--
-                                p.inventory.addItem(ItemStack(Material.IRON_INGOT))
-                                p.playSound(p.location, Sound.BLOCK_NOTE_BLOCK_SNARE, 100F, 1F)
-                            }
+                        if (p.inventory.itemInMainHand.type == Material.IRON_ORE) {
+                            p.inventory.itemInMainHand.amount--
+                            p.inventory.addItem(ItemStack(Material.IRON_INGOT))
+                            p.playSound(p.location, Sound.BLOCK_NOTE_BLOCK_SNARE, 100F, 1F)
                         }
                     }
 
                     if (e.isRightClick) {
-                        for (i in p.inventory.contents) {
-                            if (i?.type!! == Material.GOLD_ORE) {
-                                i.amount--
-                                p.inventory.addItem(ItemStack(Material.GOLD_INGOT))
-                                p.playSound(p.location, Sound.BLOCK_NOTE_BLOCK_SNARE, 100F, 1F)
-                            }
+                        if (p.inventory.itemInMainHand.type == Material.GOLD_ORE) {
+                            p.inventory.itemInMainHand.amount--
+                            p.inventory.addItem(ItemStack(Material.GOLD_INGOT))
+                            p.playSound(p.location, Sound.BLOCK_NOTE_BLOCK_SNARE, 100F, 1F)
                         }
                     }
                 }

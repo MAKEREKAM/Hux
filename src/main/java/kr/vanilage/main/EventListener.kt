@@ -87,13 +87,13 @@ class EventListener : Listener {
                 e.player.playSound(dropLocation, Sound.BLOCK_NOTE_BLOCK_SNARE, 100F, 1F)
             }, 0, 60)
 
-            if (e.player.gameMode != GameMode.CREATIVE) e.offHandItem!!.amount--;
+            if (e.player.gameMode != GameMode.CREATIVE) e.player.inventory.itemInMainHand.amount--;
         }
 
         if (e.offHandItem!!.itemMeta.displayName == "§a돌 가공기") {
             e.player.location.block.type = Material.STONECUTTER
 
-            if (e.player.gameMode != GameMode.CREATIVE) e.offHandItem!!.amount--;
+            if (e.player.gameMode != GameMode.CREATIVE) e.player.inventory.itemInMainHand.amount--;
             e.player.playSound(e.player.location, Sound.BLOCK_NOTE_BLOCK_SNARE, 100F, 1F)
         }
 
@@ -107,13 +107,13 @@ class EventListener : Listener {
                 e.player.playSound(dropLocation, Sound.BLOCK_NOTE_BLOCK_SNARE, 100F, 1F)
             }, 0, 60)
 
-            if (e.player.gameMode != GameMode.CREATIVE) e.offHandItem!!.amount--;
+            if (e.player.gameMode != GameMode.CREATIVE) e.player.inventory.itemInMainHand.amount--;
         }
 
         if (e.offHandItem!!.itemMeta.displayName == "§a제련기") {
             e.player.location.block.type = Material.BLAST_FURNACE
 
-            if (e.player.gameMode != GameMode.CREATIVE) e.offHandItem!!.amount--;
+            if (e.player.gameMode != GameMode.CREATIVE) e.player.inventory.itemInMainHand.amount--;
             e.player.playSound(e.player.location, Sound.BLOCK_NOTE_BLOCK_SNARE, 100F, 1F)
         }
 
@@ -127,7 +127,7 @@ class EventListener : Listener {
                 e.player.playSound(dropLocation, Sound.BLOCK_NOTE_BLOCK_SNARE, 100F, 1F)
             }, 0, 120)
 
-            if (e.player.gameMode != GameMode.CREATIVE) e.offHandItem!!.amount--;
+            if (e.player.gameMode != GameMode.CREATIVE) e.player.inventory.itemInMainHand.amount--;
         }
     }
 }

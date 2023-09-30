@@ -40,25 +40,25 @@ class Main : JavaPlugin() {
                 executes {
                     var count = 0
                     val size = Bukkit.getOnlinePlayers().size
-                    if(size/2 != 0) -> return
-                    for (i in Bukkit.getOnlinePlayers()) {
-                        if (count < size/2) {
-                            playerTeam[i.uniqueId] = "RED"
-                            i.teleport(Data.RED_SPAWN)
+
+                    if (size % 2 == 0) {
+                        for (i in Bukkit.getOnlinePlayers()) {
+                            if (count < size / 2) {
+                                playerTeam[i.uniqueId] = "RED"
+                                i.teleport(Data.RED_SPAWN)
+                            } else {
+                                playerTeam[i.uniqueId] = "BLUE"
+                                i.teleport(Data.BLUE_SPAWN)
+                            }
+
+                            count++
                         }
 
-                        else {
-                            playerTeam[i.uniqueId] = "BLUE"
-                            i.teleport(Data.BLUE_SPAWN)
-                        }
-
-                        count++
+                        Bukkit.getScheduler().runTaskTimer(pluginInstance!!, Runnable {
+                            Data.RED_SPAWN.world.dropItem(Data.RED_SPAWN, ItemStack(Material.OAK_LOG))
+                            Data.BLUE_SPAWN.world.dropItem(Data.BLUE_SPAWN, ItemStack(Material.OAK_LOG))
+                        }, 0, 100)
                     }
-
-                    Bukkit.getScheduler().runTaskTimer(pluginInstance!!, Runnable {
-                        Data.RED_SPAWN.world.dropItem(Data.RED_SPAWN, ItemStack(Material.OAK_LOG))
-                        Data.BLUE_SPAWN.world.dropItem(Data.BLUE_SPAWN, ItemStack(Material.OAK_LOG))
-                    }, 0, 100)
                 }
             }
         }
