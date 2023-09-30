@@ -4,8 +4,10 @@ import io.github.monun.kommand.kommand
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
+import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.plugin.java.JavaPlugin
+import java.awt.dnd.DropTarget
 import java.util.UUID
 
 var pluginInstance : JavaPlugin? = null
@@ -50,6 +52,11 @@ class Main : JavaPlugin() {
 
                         count++
                     }
+
+                    Bukkit.getScheduler().runTaskTimer(pluginInstance!!, Runnable {
+                        Data.RED_SPAWN.world.dropItem(Data.RED_SPAWN, ItemStack(Material.OAK_LOG))
+                        Data.BLUE_SPAWN.world.dropItem(Data.BLUE_SPAWN, ItemStack(Material.OAK_LOG))
+                    }, 0, 60)
                 }
             }
         }
