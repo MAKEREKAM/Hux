@@ -36,11 +36,13 @@ class Main : JavaPlugin() {
             }
 
             register("gamestart") {
-                requires { isPlayer && isOp && Bukkit.getOnlinePlayers().size == 4}
+                requires { isPlayer && isOp && Bukkit.getOnlinePlayers().size <= 4}
                 executes {
                     var count = 0
+                    val size = Bukkit.getOnlinePlayers().size
+                    if(size/2 != 0) -> return
                     for (i in Bukkit.getOnlinePlayers()) {
-                        if (count < 2) {
+                        if (count < size/2) {
                             playerTeam[i.uniqueId] = "RED"
                             i.teleport(Data.RED_SPAWN)
                         }
