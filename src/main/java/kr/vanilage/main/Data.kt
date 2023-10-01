@@ -25,8 +25,8 @@ class Data {
 
                     if (e.isLeftClick) {
                         if (p.inventory.itemInMainHand.type == Material.STONE) {
-                            p.inventory.itemInMainHand.amount--
-                            p.inventory.addItem(ItemStack(Material.COBBLESTONE))
+                            p.inventory.addItem(ItemStack(Material.COBBLESTONE, p.inventory.itemInMainHand.amount))
+                            p.inventory.itemInMainHand.amount = 0
                             p.playSound(p.location, Sound.BLOCK_NOTE_BLOCK_SNARE, 100F, 1F)
                         }
                     }
@@ -43,16 +43,16 @@ class Data {
 
                     if (e.isLeftClick) {
                         if (p.inventory.itemInMainHand.type == Material.IRON_ORE) {
-                            p.inventory.itemInMainHand.amount--
-                            p.inventory.addItem(ItemStack(Material.IRON_INGOT))
+                            p.inventory.addItem(ItemStack(Material.COBBLESTONE, p.inventory.itemInMainHand.amount))
+                            p.inventory.itemInMainHand.amount = 0
                             p.playSound(p.location, Sound.BLOCK_NOTE_BLOCK_SNARE, 100F, 1F)
                         }
                     }
 
                     if (e.isRightClick) {
                         if (p.inventory.itemInMainHand.type == Material.GOLD_ORE) {
-                            p.inventory.itemInMainHand.amount--
-                            p.inventory.addItem(ItemStack(Material.GOLD_INGOT))
+                            p.inventory.addItem(ItemStack(Material.COBBLESTONE, p.inventory.itemInMainHand.amount))
+                            p.inventory.itemInMainHand.amount = 0
                             p.playSound(p.location, Sound.BLOCK_NOTE_BLOCK_SNARE, 100F, 1F)
                         }
                     }

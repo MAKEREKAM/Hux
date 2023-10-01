@@ -40,11 +40,6 @@ class EventListener : Listener {
     }
 
     @EventHandler
-    fun onDrop(e : PlayerDropItemEvent) {
-        e.isCancelled = true
-    }
-
-    @EventHandler
     fun onInteract(e : PlayerInteractEvent) {
         if (e.action != Action.RIGHT_CLICK_BLOCK) return
 
