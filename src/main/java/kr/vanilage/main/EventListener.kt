@@ -45,11 +45,6 @@ class EventListener : Listener {
     }
 
     @EventHandler
-    fun onDropItem(e : ItemSpawnEvent) {
-
-    }
-
-    @EventHandler
     fun onInteract(e : PlayerInteractEvent) {
         if (e.action != Action.RIGHT_CLICK_BLOCK) return
 

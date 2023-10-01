@@ -36,16 +36,22 @@ class Missile : Listener {
 
         displayBlock.billboard = Display.Billboard.VERTICAL
 
-        Bukkit.getScheduler().runTaskTimer(pluginInstance!!, Runnable {
-            if (entity.isDead) {
-                displayBlock.remove()
-            }
+        val runnable = object : Runnable {
+            override fun run() {
+                if (entity.isDead) {
+                    displayBlock.remove()
+                }
 
-            else {
-                entity.world.spawnParticle(Particle.FLAME, entity.location, 15, 0.1, 0.0, 0.1)
-                displayBlock.teleport(entity.location)
+                else {
+                    entity.world.spawnParticle(Particle.FLAME, entity.location, 15, 0.1, 0.0, 0.1)
+                    displayBlock.teleport(entity.location)
+                    Bukkit.getScheduler().runTaskLater(pluginInstance!!, this, 1)
+                }
             }
-        }, 0, 1)
+        }
+
+        Bukkit.getScheduler().runTaskLater(pluginInstance!!, runnable, 1)
+
         if (e.player.gameMode != GameMode.CREATIVE) e.player.inventory.itemInMainHand.amount--
     }
 
