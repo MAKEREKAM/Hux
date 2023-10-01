@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "kr.vanilage"
-version = "1.0" // 여기에 버전을 작성하세요.
+version = "1.2" // 여기에 버전을 작성하세요.
 
 var buildPath = "D:\\Programming\\Mcserver\\Hux\\plugins" // 빌드 주소를 설정하세요.
 
